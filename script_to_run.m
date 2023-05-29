@@ -122,7 +122,7 @@ tfs_low(isinf(tfs_low))=0;
 [lfs_low,lfs_mask_low]=V_SHARP(tfs_low.*echo_mask(:,:,:,1),echo_mask(:,:,:,1),'voxelsize',vox,'smvsize',20);
 bkg_low = (tfs_low - lfs_low).*lfs_mask_low;
 
-
+% remove voxels outside brain, to reduce memory demand
 bkg_low = bkg_low(51:456, 46:566,21:406);
 lfs_low = lfs_low(51:456, 46:566,21:406);
 lfs_mask_low = lfs_mask_low(51:456, 46:566,21:406);
@@ -607,11 +607,11 @@ pad                     = floor(pad); rem_pad=0;
 
 ima = ifftshift(ima);                         clear S
 B = fftn(ima);                                clear A
-C = fftshift(B);                            clear B
+K = fftshift(B);                            clear B
 
 
         
-        K = C;                                       clear C
+
         K_real = kf.*real(K);
         K_real_pad = padarray(K_real,pad,'both');   clear K_real
         if sum(rem_pad(:))>0
@@ -625,8 +625,8 @@ C = fftshift(B);                            clear B
         K_pad = complex(K_real_pad,K_imag_pad);     clear K_*_pad
         A = ifftshift(K_pad);                       clear K_pad
         B = ifftn(A);                               clear A
-        C = fftshift(B);                            clear B
-        ima_hires = (C);                            clear C
+        ima_hires = fftshift(B);                    clear B
+
 
 end
 

@@ -2,8 +2,9 @@
 %              1) Standard pipeline with MEDI inversion
 %              2) Proposed method with low-res "tissue field" regularization
 %              3) Proposed method with low-res "susceptibility" regulariz.
-%
-% By Nashwan Naji, nashwana@ualberta.ca
+% Please cite this paper when needed:
+% Naji Nashwan, Wilman Alan. Thin slab quantitative susceptibility mapping. Magnetic Resonance in Medicine. 2023. doi:10.1002/mrm.29800.
+
 
 function script_to_run
  clear
